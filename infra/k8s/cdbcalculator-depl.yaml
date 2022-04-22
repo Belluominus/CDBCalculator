@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdbcalculator-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cdbcalculator
+  template:
+    metadata:
+      labels:
+        app: cdbcalculator
+    spec:
+      containers:
+        - name: cdbcalculator
+          image: belluominus/cdbcalculator
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cdbcalculator-srv
+spec:
+  selector:
+    app: cdbcalculator
+  ports: 
+    - name: cdbcalculator
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
