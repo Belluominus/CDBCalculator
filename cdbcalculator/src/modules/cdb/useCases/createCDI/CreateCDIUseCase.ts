@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { injectable } from 'tsyringe';
 
 import { CDI } from '../../models/cdi';
@@ -12,14 +11,10 @@ interface IRequest {
 @injectable()
 class CreateCDIUseCase {
   async execute({ sSecurityName, dtDate, dLastTradePrice }: IRequest) {
-    const parsedDate = moment(dtDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
-    const existCDI = await CDI.findOne({ sSecurityName, parsedDate });
-
-    console.log(existCDI);
+    const existCDI = await CDI.findOne({ sSecurityName, dtDate });
 
     if (!existCDI) {
-      const newcdi = CDI.build({ sSecurityName, dtDate: parsedDate, dLastTradePrice });
+      const newcdi = CDI.build({ sSecurityName, dtDate, dLastTradePrice });
 
       await newcdi.save();
 
@@ -28,13 +23,9 @@ class CreateCDIUseCase {
 
     await CDI.deleteOne({ sSecurityName, dtDate });
 
-    const newcdi = CDI.build({ sSecurityName, dtDate: parsedDate, dLastTradePrice });
+    const newcdi = CDI.build({ sSecurityName, dtDate, dLastTradePrice });
 
     await newcdi.save();
-
-    const existCDI2 = await CDI.findOne({ sSecurityName, parsedDate });
-
-    console.log(existCDI2);
 
     return 'Old CDI Updated';
   }

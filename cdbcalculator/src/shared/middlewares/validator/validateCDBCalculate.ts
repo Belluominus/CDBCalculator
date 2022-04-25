@@ -3,10 +3,10 @@ import { validationResult, check } from 'express-validator';
 
 import { RequestValidationErrors } from '../../errors/RequestValidationErrors';
 
-const validateCDICreation = [
-  check('sSecurityName').trim().notEmpty().withMessage('Missing sSecurityName fild'),
-  check('dtDate').isDate().withMessage('dtDate must be a valid date and be in US format'),
-  check('dLastTradePrice').trim().isNumeric().withMessage('dLastTradePrice must be numeric'),
+const validateCDBCalculate = [
+  check('investmentDate').isDate().withMessage('investmentDate must be a valid date and be in US format'),
+  check('cdbRate').trim().isNumeric().withMessage('cdbRate must be numeric'),
+  check('currentDate').isDate().withMessage('currentDate must be a valid date and be in US format'),
   (request: Request, response: Response, next: NextFunction) => {
     const errors = validationResult(request);
 
@@ -18,4 +18,4 @@ const validateCDICreation = [
   },
 ];
 
-export { validateCDICreation };
+export { validateCDBCalculate };

@@ -16,6 +16,8 @@ declare global {
   var signin: () => Promise<void>;
 }
 
+jest.useFakeTimers('legacy');
+
 let mongo: any;
 beforeAll(async () => {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';

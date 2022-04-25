@@ -50,8 +50,12 @@ class ImportCDIUseCase {
     }
     const CDIList = await this.loadCDIs(file);
 
+    const CDIListWithoutHeaders = CDIList.filter((jsonObject) => {
+      return jsonObject.dtDate !== 'dtDate';
+    });
+
     await Promise.all(
-      CDIList.map(async (cdi) => {
+      CDIListWithoutHeaders.map(async (cdi) => {
         const { sSecurityName, dtDate, dLastTradePrice } = cdi;
 
         const parsedDate = moment(dtDate, 'DD/MM/YYYY').format('YYYY-MM-DD');

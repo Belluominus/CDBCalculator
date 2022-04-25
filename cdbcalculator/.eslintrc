@@ -25,6 +25,7 @@
         "prettier/prettier": "error",
         "import/no-unresolved": "off",
         "no-use-before-define": "off",
+        "no-await-in-loop": "off",
         "@typescript-eslint/naming-convention": [
             "error",
             {

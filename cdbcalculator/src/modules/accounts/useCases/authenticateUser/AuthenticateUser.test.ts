@@ -31,7 +31,7 @@ it('fails when an incorrect password is supplied', async () => {
     .expect(400);
 });
 
-it('responds with a cookie when given valid credentials', async () => {
+it('Expect 200 when given valid credentials', async () => {
   await request(app)
     .post('/api/users/create')
     .send({
