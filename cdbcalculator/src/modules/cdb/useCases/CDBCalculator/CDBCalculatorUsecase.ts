@@ -5,7 +5,7 @@ import { BadRequestError } from '../../../../shared/errors/BadRequestError';
 import { CDI } from '../../models/cdi';
 
 interface IResponse {
-  date: string;
+  date: Date;
   unitPrice: number;
 }
 interface IRequest {
@@ -13,7 +13,6 @@ interface IRequest {
   cdbRate: string;
   currentDate: string;
 }
-
 @injectable()
 class CDBCalculatorUsecase {
   async execute({ investmentDate, cdbRate, currentDate }: IRequest): Promise<IResponse[]> {
@@ -29,13 +28,16 @@ class CDBCalculatorUsecase {
     if (dateDif < 0) {
       throw new BadRequestError("currentDate can't be less then investmentDate");
     }
-
-    let dateToCalc = null;
+    let CDIac = 1;
     let cont = 0;
     do {
+      console.log('-----------------------------------');
       console.log(cont);
+      let dateToCalc = moment(investmentDate, 'YYYY-MM-DD');
 
-      dateToCalc = investDate.add(cont, 'days');
+      console.log(dateToCalc);
+
+      dateToCalc = dateToCalc.add(cont, 'days');
       const formatedDate = dateToCalc.format('YYYY-MM-DD');
 
       const existCDI = await CDI.findOne({ sSecurityName: 'CDI', dtDate: formatedDate });
@@ -50,12 +52,13 @@ class CDBCalculatorUsecase {
         const CDIAcumulado = 1 + (resultRounded * TCDB) / 100;
         console.log(CDIk, CDIAcumulado);
 
+        CDIac *= CDIAcumulado;
+
         CDBList.push({
-          date: formatedDate,
-          unitPrice: CDIAcumulado,
+          date: new Date(formatedDate),
+          unitPrice: CDIac,
         });
       }
-      dateToCalc = investDate;
       console.log(dateToCalc);
       cont += 1;
     } while (cont <= dateDif);

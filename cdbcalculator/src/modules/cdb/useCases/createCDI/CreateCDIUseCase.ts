@@ -31,18 +31,4 @@ class CreateCDIUseCase {
   }
 }
 
-// FORMULA 1 + 2
-
-// const formatedPrice: number = +dLastTradePrice;
-
-// const calc = (formatedPrice / 100 + 1) ** 0.003968253968254 - 1;
-
-// const resultRounded = parseFloat(calc.toFixed(8));
-
-// const calc2 = 1 + (resultRounded * 103.5) / 100;
-
-// DATE
-
-// const parsedDate = moment(dtDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
-
 export { CreateCDIUseCase };
