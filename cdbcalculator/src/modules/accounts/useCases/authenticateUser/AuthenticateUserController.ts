@@ -11,7 +11,7 @@ class AuthenticateUserController {
 
     const singUpData = await authenticateUserUseCase.execute({ email, password });
 
-    return response.status(201).send(singUpData);
+    return response.status(200).send(singUpData);
   }
 }
 
