@@ -16,19 +16,19 @@ Ela salva os dados no banco não relacional mongoDB, para rodar essa aplicação
 
 Antes de iniciar o projeto é importante dentro dos arquivos em infra/k8s e dentro de skaffold.yaml mudar o usurario dodocker onde se encontra belluominus/* colocar o usuario que esta conectado no seu docker
 
-<img width="80%" alt="application" src="https://github.com/Belluominus/blog_with_microservices/blob/main/readMeFiles/aplication.gif" /><br><br>
+<img width="80%" alt="application" src="https://github.com/Belluominus/CDBCalculator/blob/main/readMeFiles/changeUser.gif" /><br><br>
 
 Adcionar dentro dos hosts do SO o link cdbcalculator.dev apontado para o localhost (127.0.0.1)
 
-<img width="80%" alt="application" src="https://github.com/Belluominus/blog_with_microservices/blob/main/readMeFiles/aplication.gif" /><br><br>
+<img width="80%" alt="application" src="https://github.com/Belluominus/CDBCalculator/blob/main/readMeFiles/link.gif" /><br><br>
 
 Para rodar o projeto basta execultar o comando: skaffold dev. uma vez executado ele rodara as configurações do kubernetes que estão dentro de infra.
 
-<img width="80%" alt="application" src="https://github.com/Belluominus/blog_with_microservices/blob/main/readMeFiles/aplication.gif" /><br><br>
+<img width="80%" alt="application" src="https://github.com/Belluominus/CDBCalculator/blob/main/readMeFiles/skaffoldDev.gif" /><br><br>
 
 Tambem é posivel execultar testes basta no promp inserir yarn test ou npm test, dependendo do que tiver usando, dentro da pasta cdbcalculator
 
-<img width="80%" alt="application" src="https://github.com/Belluominus/blog_with_microservices/blob/main/readMeFiles/aplication.gif" /><br><br>
+<img width="80%" alt="application" src="https://github.com/Belluominus/CDBCalculator/blob/main/readMeFiles/test.gif" /><br><br>
 
 Por fim na raiz do projeto tem o arquivo CDBCalculator_Insominia ele contem a configuração dos end points para o indominia.
 <br>
