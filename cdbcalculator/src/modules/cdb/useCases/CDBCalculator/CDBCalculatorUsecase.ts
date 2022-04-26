@@ -31,26 +31,18 @@ class CDBCalculatorUsecase {
     let CDIac = 1;
     let cont = 0;
     do {
-      console.log('-----------------------------------');
-      console.log(cont);
       let dateToCalc = moment(investmentDate, 'YYYY-MM-DD');
-
-      console.log(dateToCalc);
 
       dateToCalc = dateToCalc.add(cont, 'days');
       const formatedDate = dateToCalc.format('YYYY-MM-DD');
 
       const existCDI = await CDI.findOne({ sSecurityName: 'CDI', dtDate: formatedDate });
 
-      console.log(dateToCalc, formatedDate);
-      console.log(existCDI);
-
       if (existCDI) {
         const formatedPrice: number = +existCDI.dLastTradePrice;
         const CDIk = (formatedPrice / 100 + 1) ** 0.003968253968254 - 1;
         const resultRounded = parseFloat(CDIk.toFixed(8));
         const CDIAcumulado = 1 + (resultRounded * TCDB) / 100;
-        console.log(CDIk, CDIAcumulado);
 
         CDIac *= CDIAcumulado;
 
@@ -59,7 +51,6 @@ class CDBCalculatorUsecase {
           unitPrice: CDIac,
         });
       }
-      console.log(dateToCalc);
       cont += 1;
     } while (cont <= dateDif);
 

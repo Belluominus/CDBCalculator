@@ -53,7 +53,7 @@ it('Expect 400 dtDate is not a valid date', async () => {
     .post('/api/cdi/create')
     .send({ sSecurityName: 'CDI', dtDate: 'adsafsadf', dLastTradePrice: '4.9' })
     .set({ Authorization: `Beare ${token}` })
-    .expect(201);
+    .expect(400);
 });
 
 it('Expect 400 sSecurityName missing', async () => {
@@ -80,7 +80,7 @@ it('Expect 400 sSecurityName missing', async () => {
     .post('/api/cdi/create')
     .send({ dtDate: '2019-12-13', dLastTradePrice: '4.9' })
     .set({ Authorization: `Beare ${token}` })
-    .expect(201);
+    .expect(400);
 });
 
 it('Expect 400 dLastTradePrice is not numeric', async () => {
@@ -107,5 +107,5 @@ it('Expect 400 dLastTradePrice is not numeric', async () => {
     .post('/api/cdi/create')
     .send({ sSecurityName: 'CDI', dtDate: '2019-12-13', dLastTradePrice: 'a' })
     .set({ Authorization: `Beare ${token}` })
-    .expect(201);
+    .expect(400);
 });
